@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>[アマンダ] - PARA MEU AMOR</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffcce0;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-image: url('39246.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    #counter {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -100%);
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      background-color: rgba(255, 102, 153, 0.8);
+      padding: 10px 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 20;
+    }
+
+    button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 15px 30px;
+      font-size: 16px;
+      background-color: #ff6699;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      z-index: 10;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .message {
+      position: absolute;
+      padding: 10px 20px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      color: #ff3366;
+      font-weight: bold;
+      white-space: nowrap;
+      animation: float 5s ease-in-out forwards;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-200px); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="counter">Carregando tempo de amor...</div>
+    <button onclick="createMessage()">Mostrar Amor</button>
+  </div>
+
+  <script>
+    const messages = [
+  "Te amo mais a cada batida do meu coração ❤️",
+  "Obrigado por estar na minha vida 💖",
+  "Cada momento contigo é mágico ✨",
+  "Eu te amo ❤️",
+  "Juntos para sempre 🥰",
+  "Seu sorriso ilumina meus dias ☀️",
+  "Você é minha razão de viver 💓",
+  "Meu coração é seu desde o primeiro olhar 💘",
+  "Com você, todos os dias são especiais 🌹",
+  "Você é meu hoje e todos os meus amanhãs 💍",
+  "愛してる❤️"
+];
+
+
+    function createMessage() {
+      const container = document.querySelector('.container');
+      const message = document.createElement('div');
+      message.className = 'message';
+      message.innerText = messages[Math.floor(Math.random() * messages.length)];
+
+      message.style.left = Math.random() * 90 + "%";
+      message.style.top = "90%";
+
+      container.appendChild(message);
+
+      setTimeout(() => {
+        container.removeChild(message);
+      }, 5000);
+    }
+
+    function updateCounter() {
+      const startDate = new Date("2024-10-27T00:00:00");
+      const now = new Date();
+      const diff = now - startDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("counter").innerText =
+        `Estamos juntos há ${days} dias, ${hours}h ${minutes}m ${seconds}s 💖`;
+    }
+
+    setInterval(updateCounter, 1000);
+    updateCounter();
+  </script>
+</body>
+</html>
